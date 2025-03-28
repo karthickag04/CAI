@@ -1,1 +1,8 @@
 https://chatgpt.com/share/6752a0af-2124-800b-9744-fac5f2f7a86e
+
+
+
+
+for image handling under easyocr or pytesseract
+
+https://chatgpt.com/share/67e5436f-12c0-800b-a757-15551e870e94
