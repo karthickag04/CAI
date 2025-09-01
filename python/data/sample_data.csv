@@ -1,0 +1,7 @@
+# Employee records dataset
+emp_id | full_name | age | salary | join_date | active | notes
+1 | "Arun, Kumar" | 28 | 50,000.50 | 01-02-2020 | YES | NA
+2 | Priya Sharma | NA | 75,000.00 | 15-03-2021 | NO | "Promoted in 2022"
+3 | "Mohan \"Mo\" Raj" | 35 | 1,20,000.75 | 2020/07/01 | TRUE | -
+# This is a comment line
+4 | Karthick AG | 42 | N/A | 2021-12-31 | FALSE | "Transferred; works remote"

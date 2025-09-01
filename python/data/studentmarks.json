@@ -1,0 +1,40 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Arun Kumar",
+      "class": "10A",
+      "marks": {
+        "maths": 85,
+        "science": 90,
+        "english": 78,
+        "social": 88,
+        "tamil": 92
+      }
+    },
+    {
+      "id": 2,
+      "name": "Priya Sharma",
+      "class": "10A",
+      "marks": {
+        "maths": 95,
+        "science": 89,
+        "english": 82,
+        "social": 91,
+        "tamil": 87
+      }
+    },
+    {
+      "id": 3,
+      "name": "Ravi Raj",
+      "class": "10B",
+      "marks": {
+        "maths": 76,
+        "science": 72,
+        "english": 80,
+        "social": 85,
+        "tamil": 90
+      }
+    }
+  ]
+}
