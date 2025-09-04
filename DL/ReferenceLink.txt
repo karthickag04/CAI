@@ -6,3 +6,7 @@ https://chatgpt.com/share/68943f30-0e88-800b-92ea-ef0845933ce1
 for image handling under easyocr or pytesseract
 
 https://chatgpt.com/share/67e5436f-12c0-800b-a757-15551e870e94
+
+
+RNN Chat Ref
+https://chatgpt.com/share/68b93177-008c-800b-bc84-bf58511895fe
