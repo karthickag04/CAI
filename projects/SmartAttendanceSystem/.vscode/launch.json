@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: run_webcam.py (conda: face)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_webcam.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": { "PYTHONUNBUFFERED": "1" },
+      "python": "C:/Users/Laptop/.conda/envs/face/python.exe",
+      "cwd": "${workspaceFolder}",
+      "args": []
+    },
+    {
+      "name": "Python: run_image.py (conda: face)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_image.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": { "PYTHONUNBUFFERED": "1" },
+      "python": "C:/Users/Laptop/.conda/envs/face/python.exe",
+      "cwd": "${workspaceFolder}",
+      "args": ["test_images/alice1.png"]
+    }
+  ]
+}

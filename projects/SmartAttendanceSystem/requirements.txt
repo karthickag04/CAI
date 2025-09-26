@@ -1,0 +1,6 @@
+# Core dependencies for Smart Attendance System
+# On Windows, face_recognition requires prebuilt dlib wheels; see README for tips
+face_recognition>=1.3.0
+opencv-python>=4.9.0
+numpy>=1.24.0
+pandas>=2.0.0

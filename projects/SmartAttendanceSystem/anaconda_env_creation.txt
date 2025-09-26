@@ -1,0 +1,11 @@
+# 1. Create a new environment with Python 3.10
+conda create -n face python=3.10 -y
+
+# 2. Activate the environment
+conda activate face
+
+# 3. Install scientific packages from conda-forge
+conda install -c conda-forge dlib opencv numpy pandas matplotlib -y
+
+# 4. Install face_recognition via pip (only this one!)
+pip install face_recognition

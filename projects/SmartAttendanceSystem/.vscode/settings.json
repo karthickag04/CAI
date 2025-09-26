@@ -1,0 +1,13 @@
+{
+  // Force VS Code to use the conda "face" environment for linting, running, and debugging
+  "python.defaultInterpreterPath": "C:/Users/Laptop/.conda/envs/face/python.exe",
+  // Optional: improve IntelliSense
+  "python.analysis.typeCheckingMode": "basic",
+  // Ensure the integrated terminal activates conda
+  "terminal.integrated.env.windows": {
+    "CONDA_DEFAULT_ENV": "face"
+},
+"python-envs.defaultEnvManager": "ms-python.python:conda",
+"python-envs.defaultPackageManager": "ms-python.python:conda",
+"python-envs.pythonProjects": []
+}

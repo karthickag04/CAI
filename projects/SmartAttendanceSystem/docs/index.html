@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Attendance System – Documentation</title>
+  <style>
+    :root{
+      --bg:#0f172a;          /* slate-900 */
+      --panel:#111827;       /* gray-900 */
+      --text:#e5e7eb;        /* gray-200 */
+      --muted:#9ca3af;       /* gray-400 */
+      --brand:#22d3ee;       /* cyan-400 */
+      --accent:#34d399;      /* emerald-400 */
+      --border:#1f2937;      /* gray-800 */
+      --link:#7dd3fc;        /* sky-300 */
+      --badge:#1f2937;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font:14px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, sans-serif;
+      color:var(--text); background:linear-gradient(180deg, #0b1022, var(--bg));
+      display:flex; min-height:100vh;
+    }
+    .sidebar{
+      width:300px; max-width:80vw; background:rgba(17,24,39,.8); backdrop-filter: blur(8px);
+      border-right:1px solid var(--border); padding:18px 14px; position:sticky; top:0; height:100vh; overflow:auto;
+    }
+    .brand{display:flex; align-items:center; gap:10px; margin:6px 6px 14px;}
+    .brand .logo{width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,var(--brand),var(--accent)); box-shadow:0 0 0 2px rgba(255,255,255,.08) inset}
+    .brand .title{font-weight:700; letter-spacing:.3px}
+    .search{position:sticky; top:0; background:inherit; padding-bottom:8px; margin-bottom:8px}
+    .search input{width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--border); background:#0b1329; color:var(--text)}
+    nav{margin-top:8px}
+    nav a{display:block; color:var(--muted); text-decoration:none; padding:6px 10px; border-radius:6px; margin:2px 4px}
+    nav a:hover, nav a.active{background:#0b1329; color:var(--text)}
+
+    .content{
+      flex:1; height:100vh; overflow:auto;
+    }
+    .container{max-width:1100px; margin:0 auto; padding:24px 28px 64px}
+    header.hero{padding:8px 0 12px; border-bottom:1px solid var(--border); position:sticky; top:0; background:linear-gradient(180deg, rgba(15,23,42,.95), rgba(15,23,42,.92)); backdrop-filter: blur(6px); z-index:5}
+    h1{font-size:28px; margin:12px 0}
+    h2{font-size:20px; margin:28px 0 10px; border-left:3px solid var(--brand); padding-left:10px}
+    h3{font-size:16px; margin:22px 0 8px}
+    p{margin:10px 0}
+    code, pre{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+    pre{background:#0b1329; border:1px solid var(--border); padding:12px; border-radius:8px; overflow:auto}
+    .kbd{border:1px solid var(--border); background:#0b1329; padding:2px 6px; border-radius:6px}
+    .badge{display:inline-block; padding:2px 6px; background:var(--badge); border:1px solid var(--border); border-radius:6px; color:var(--muted); font-size:12px}
+    .grid{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    .card{border:1px solid var(--border); background:rgba(17,24,39,.6); border-radius:10px; padding:14px}
+    ul{margin:8px 0 8px 18px}
+    a{color:var(--link)}
+    .footer{margin-top:40px; color:var(--muted); font-size:12px}
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo"></div>
+      <div class="title">Smart Attendance Docs</div>
+    </div>
+    <div class="search">
+      <input id="search" type="search" placeholder="Search topics… (Ctrl+/)" />
+    </div>
+    <nav id="toc">
+      <a href="#overview" class="active">Overview</a>
+      <a href="#structure">Folder & Data Model</a>
+      <a href="#flow">High-level Flow</a>
+      <a href="#functions">Key Functions</a>
+      <a href="#call-graph">Call Graph</a>
+      <a href="#data-flows">Data Flows</a>
+      <a href="#thresholds">Thresholds & Accuracy</a>
+      <a href="#performance">Performance</a>
+      <a href="#extensibility">Extensibility</a>
+  <a href="#implementation">Implementation Guide</a>
+      <a href="#troubleshooting">Troubleshooting</a>
+      <a href="#environment">Environment</a>
+      <a href="#future">Future Improvements</a>
+    </nav>
+  </aside>
+  <main class="content">
+    <header class="hero">
+      <div class="container">
+        <h1>Smart Attendance System – Documentation</h1>
+        <div>
+          <span class="badge">Version: docs SPA</span>
+          <span class="badge">Updated: 2025‑09‑26</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <section id="overview">
+        <h2>Overview</h2>
+        <p>
+          Face recognition-based attendance logger using OpenCV for capture/drawing,
+          <code>face_recognition</code> (dlib) for detection and 128‑D embeddings,
+          and Pandas/CSV for storage.
+        </p>
+        <div class="grid">
+          <div class="card"><h3>What</h3>
+            <ul>
+              <li>Recognize faces from webcam or images</li>
+              <li>Write attendance: <code>attendance.csv</code></li>
+              <li>Simple, local, offline-first design</li>
+            </ul>
+          </div>
+          <div class="card"><h3>Why</h3>
+            <ul>
+              <li>Lightweight demo/reference for attendance systems</li>
+              <li>Easy to extend (DB, API, UI)</li>
+              <li>Teaches practical face-recognition pipeline</li>
+            </ul>
+          </div>
+        </div>
+        <p class="badge">Key files: <code>smart_attendance_system.py</code>, <code>run_webcam.py</code>, <code>run_image.py</code>, <code>known_faces/</code>, <code>attendance.csv</code></p>
+      </section>
+
+      <section id="structure">
+        <h2>Folder & Data Model</h2>
+        <pre><code>known_faces/
+  &lt;PersonName&gt;/
+    image1.jpg|jpeg|png
+    image2.jpg|jpeg|png
+attendance.csv
+smart_attendance_system.py
+run_webcam.py
+run_image.py
+</code></pre>
+        <ul>
+          <li>Person label = folder name under <code>known_faces/</code></li>
+          <li>Each image → 128‑D embedding; stored in memory at startup</li>
+          <li>CSV columns: <code>Name, Date, Time</code>; one entry per person/day (by default)</li>
+        </ul>
+        <p class="badge">Implementation: <code>smart_attendance_system.py</code> → constants <code>KNOWN_FACES_DIR</code>, <code>ATTENDANCE_CSV</code></p>
+      </section>
+
+      <section id="flow">
+        <h2>High‑level Flow</h2>
+        <ol>
+          <li>Load & encode known faces</li>
+          <li>Recognize from webcam or images</li>
+          <li>Mark attendance in CSV</li>
+        </ol>
+        <p class="badge">Implementation: <code>load_and_encode_faces()</code>, <code>recognize_faces_from_video()</code>, <code>recognize_faces_in_image()</code>, <code>mark_attendance()</code></p>
+      </section>
+
+      <section id="functions">
+        <h2>Key Functions (smart_attendance_system.py)</h2>
+        <div class="card">
+          <h3>load_and_encode_faces(dir)</h3>
+          <p>Scans <code>known_faces/</code>, loads images, computes encodings, returns <code>(known_encodings, known_names)</code>.</p>
+          <p class="badge">Defined in: <code>smart_attendance_system.py</code></p>
+        </div>
+        <div class="card">
+          <h3>mark_attendance(name, file, only_once)</h3>
+          <p>Appends <code>Name, Date, Time</code> to CSV; can dedupe by day.</p>
+          <p class="badge">Defined in: <code>smart_attendance_system.py</code> (writes <code>attendance.csv</code>)</p>
+        </div>
+        <div class="card">
+          <h3>_match_face(enc, known_encs, known_names, threshold)</h3>
+          <p>Helper to compute nearest neighbor and return predicted name + distance.</p>
+          <p class="badge">Defined in: <code>smart_attendance_system.py</code></p>
+        </div>
+        <div class="card">
+          <h3>recognize_faces_in_image(path, known_encs, known_names, mark)</h3>
+          <p>Single‑image pipeline: read → BGR→RGB (contiguous) → detect → encode → nearest neighbor → optional attendance.</p>
+          <p class="badge">Defined in: <code>smart_attendance_system.py</code> • Used by: <code>run_image.py</code></p>
+        </div>
+        <div class="card">
+          <h3>recognize_faces_from_video(known_encs, known_names, file, index)</h3>
+          <p>Webcam pipeline: capture loop → resize → BGR→RGB (contiguous) → detect → encode → draw → attendance → show.</p>
+          <p class="badge">Defined in: <code>smart_attendance_system.py</code> • Used by: <code>run_webcam.py</code></p>
+        </div>
+      </section>
+
+      <section id="call-graph">
+        <h2>Call Graph</h2>
+        <pre><code>run_webcam.py
+  ├─ load_and_encode_faces()
+  └─ recognize_faces_from_video()
+
+run_image.py
+  ├─ load_and_encode_faces()
+  └─ recognize_faces_in_image()
+
+recognize_faces_from_video()
+  ├─ face_recognition.face_locations()
+  ├─ face_recognition.face_encodings()
+  └─ mark_attendance()
+
+recognize_faces_in_image()
+  ├─ face_recognition.face_locations()
+  ├─ face_recognition.face_encodings()
+  └─ mark_attendance() [optional]
+</code></pre>
+        <p class="badge">Files: <code>run_webcam.py</code>, <code>run_image.py</code>, <code>smart_attendance_system.py</code></p>
+      </section>
+
+      <section id="data-flows">
+        <h2>Data Flows</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Webcam</h3>
+            <ol>
+              <li>Frame → resize → RGB(contig) → detect faces</li>
+              <li>Each face → encode(128‑D) → nearest neighbor</li>
+              <li>Draw, label, mark attendance</li>
+            </ol>
+            <p class="badge">Implemented in: <code>smart_attendance_system.py</code> → <code>recognize_faces_from_video()</code></p>
+          </div>
+          <div class="card">
+            <h3>Single Image</h3>
+            <ol>
+              <li>Read → RGB(contig) → detect → encode → nearest neighbor</li>
+              <li>Optional: mark attendance</li>
+            </ol>
+            <p class="badge">Implemented in: <code>smart_attendance_system.py</code> → <code>recognize_faces_in_image()</code></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="thresholds">
+        <h2>Thresholds & Accuracy</h2>
+        <ul>
+          <li><code>FACE_MATCH_THRESHOLD</code> = 0.6 (typical 0.4–0.6)</li>
+          <li>Lower = stricter (fewer false accepts), higher = more permissive</li>
+          <li>Use 2–5 varied images per person (angles/lighting)</li>
+        </ul>
+        <p class="badge">Defined in: <code>smart_attendance_system.py</code> (constant)</p>
+      </section>
+
+      <section id="performance">
+        <h2>Performance</h2>
+        <ul>
+          <li><code>SCALE_FACTOR</code> = 0.25 for faster per‑frame processing</li>
+          <li>Consider caching encodings for large datasets</li>
+          <li>GPU/different detectors can improve speed/robustness</li>
+        </ul>
+        <p class="badge">Defined in: <code>smart_attendance_system.py</code> (constant)</p>
+      </section>
+
+      <section id="extensibility">
+        <h2>Extensibility</h2>
+        <ul>
+          <li>Swap CSV for DB in <code>mark_attendance</code> (SQLite/MySQL/Postgres)</li>
+          <li>Expose REST API (Flask/FastAPI) or UI (Streamlit/Web)</li>
+          <li>Use MTCNN/RetinaFace or alternative embeddings (FaceNet/ArcFace)</li>
+        </ul>
+        <p class="badge">Touch points: <code>mark_attendance()</code>, <code>recognize_faces_in_image()</code>, <code>recognize_faces_from_video()</code></p>
+      </section>
+
+      <section id="implementation">
+        <h2>Implementation Guide – What / Why / How</h2>
+        <div class="card">
+          <h3>Face recognition pipeline</h3>
+          <p><strong>What:</strong> detect faces → 128‑D encodings → nearest‑neighbor match.</p>
+          <p><strong>Why:</strong> numeric embeddings allow fast, simple comparisons.</p>
+          <p><strong>How:</strong> <code>face_recognition.face_locations</code>, <code>face_recognition.face_encodings</code>, <code>face_recognition.face_distance</code>.</p>
+          <p class="badge">Code: <code>smart_attendance_system.py</code> → <code>recognize_faces_in_image()</code>, <code>recognize_faces_from_video()</code></p>
+        </div>
+        <div class="card">
+          <h3>Data storage</h3>
+          <p><strong>What:</strong> local CSV with <code>Name, Date, Time</code>.</p>
+          <p><strong>Why:</strong> zero‑setup, Excel‑friendly.</p>
+          <p><strong>How:</strong> Pandas; dedupe once/day.</p>
+          <p class="badge">Code: <code>smart_attendance_system.py</code> → <code>mark_attendance()</code></p>
+        </div>
+        <div class="card">
+          <h3>Known faces model</h3>
+          <p><strong>What:</strong> <code>known_faces/&lt;PersonName&gt;/</code> with multiple photos.</p>
+          <p><strong>Why:</strong> simple labeling, no metadata needed.</p>
+          <p><strong>How:</strong> folder name is label; embeddings built at load.</p>
+          <p class="badge">Code: <code>smart_attendance_system.py</code> → <code>load_and_encode_faces()</code></p>
+        </div>
+        <div class="card">
+          <h3>Performance</h3>
+          <p><strong>What:</strong> downscale frames, then draw boxes at original scale.</p>
+          <p><strong>Why:</strong> faster CPU processing.</p>
+          <p><strong>How:</strong> <code>SCALE_FACTOR</code> constant and coordinate rescaling.</p>
+          <p class="badge">Code: <code>smart_attendance_system.py</code> → <code>recognize_faces_from_video()</code></p>
+        </div>
+        <div class="card">
+          <h3>Robustness</h3>
+          <p><strong>What:</strong> enforce RGB and contiguous arrays.</p>
+          <p><strong>Why:</strong> required by dlib to avoid <code>compute_face_descriptor</code> TypeErrors.</p>
+          <p><strong>How:</strong> <code>cv2.cvtColor(..., cv2.COLOR_BGR2RGB)</code> and <code>np.ascontiguousarray</code>.</p>
+          <p class="badge">Code: conversion present in both image and video paths</p>
+        </div>
+        <p class="badge">See also: <code>docs/IMPLEMENTATION_GUIDE.md</code> for longer explanations.</p>
+      </section>
+
+      <section id="troubleshooting">
+        <h2>Troubleshooting</h2>
+        <ul>
+          <li>TypeError in dlib: ensure RGB conversion and <code>np.ascontiguousarray</code></li>
+          <li>Webcam not opening: try <code>CAMERA_INDEX = 1</code> or OS permissions</li>
+          <li>Too many "Unknown": add better photos or tune threshold</li>
+        </ul>
+        <p class="badge">Relevant code: <code>recognize_faces_in_image()</code>, <code>recognize_faces_from_video()</code></p>
+      </section>
+
+      <section id="environment">
+        <h2>Environment</h2>
+        <ul>
+          <li>Requirements: <code>face_recognition</code>, <code>opencv-python</code>, <code>numpy</code>, <code>pandas</code></li>
+          <li>Windows: dlib often needs a matching prebuilt wheel</li>
+        </ul>
+        <p class="badge">Files: <code>requirements.txt</code>, <code>README.md</code></p>
+      </section>
+
+      <section id="future">
+        <h2>Future Improvements</h2>
+        <ul>
+          <li>Hot‑reload encodings (press <span class="kbd">R</span>)</li>
+          <li>Debounce repeat attendance in short windows</li>
+          <li>Persist encodings for faster startup</li>
+          <li>Add unit tests for utilities</li>
+        </ul>
+      </section>
+
+      <div class="footer">© 2025 Smart Attendance System Docs</div>
+    </div>
+  </main>
+
+  <script>
+    // Simple SPA helpers: active link, smooth scroll, search filter
+    const links = Array.from(document.querySelectorAll('#toc a'));
+    const sections = links.map(a => document.querySelector(a.getAttribute('href')));
+    const search = document.getElementById('search');
+
+    function setActive() {
+      let idx = 0;
+      const y = window.scrollY + 100;
+      sections.forEach((sec, i) => {
+        if (sec && sec.offsetTop <= y) idx = i;
+      });
+      links.forEach(l => l.classList.remove('active'));
+      links[idx].classList.add('active');
+    }
+    document.addEventListener('scroll', setActive, { passive: true });
+    setActive();
+
+    links.forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = a.getAttribute('href');
+        document.querySelector(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, '', id);
+      });
+    });
+
+    // Basic client-side search to filter TOC by text
+    function doSearch(q){
+      const t = q.trim().toLowerCase();
+      links.forEach(a => {
+        const show = a.textContent.toLowerCase().includes(t);
+        a.style.display = show ? '' : 'none';
+      });
+    }
+    search.addEventListener('input', () => doSearch(search.value));
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === '/') {
+        e.preventDefault(); search.focus();
+      }
+    });
+  </script>
+</body>
+</html>
