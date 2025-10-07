@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <title>HTML Forms</title>
+    <link rel="shortcut icon" href="https://trymeyourself.com/images/TryMeYourSelf-logo-head.png" type="image/x-icon">
+   <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+  <navbar >
+        <div class="menus" style="display: flex; justify-content: space-around; background-color: lightblue;">
+            <div class="child-menu">
+                <a href="/">Home</a>
+            </div>
+            <div class="child-menu">
+                <a href="/about">about</a>
+            </div>
+            <div class="child-menu">
+                <a href="/services">services</a>
+            </div>
+            <div class="child-menu">
+                <a href="/register">register</a>
+            </div>
+        </div>
+    </navbar>
+
+<h2 style="background-color: rgb(68, 0, 255);">HTML Forms</h2>
+
+<form action="" method="post">
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname" value="John"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname" value="Doe"><br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+
+</body>
+</html>
