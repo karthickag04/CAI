@@ -6,3 +6,6 @@ https://chatgpt.com/share/698ad57e-0cf8-800b-aba5-2e403fbc589f
 
 GAN Code Explaination
 https://chatgpt.com/share/698eb3c4-f790-800b-a1cb-99d05ecbc2cc
+
+GAN Code Explaination working flow
+https://chatgpt.com/share/699406f6-8620-800b-914e-9d6e1e0964fc
