@@ -1,3 +1,6 @@
 
 Conversation on NLP
 https://chatgpt.com/share/689985a4-35b8-800b-809d-3462187a9b2e
+
+Sentiment Analysis workflow
+https://chatgpt.com/share/6a4f7983-3e7c-83e9-830a-9c7271b59a6d
