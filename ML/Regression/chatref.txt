@@ -1,3 +1,6 @@
 
 Ref link for Linear Regression
 https://chatgpt.com/share/68c11246-9da0-800b-8e1a-cfa28f9aa1ac
+
+complete exploration of Regression
+https://chatgpt.com/share/6a71c5b5-52fc-83e8-8f23-5342ecdda37b
