@@ -1,2 +1,6 @@
 chat ref for project titles
 https://chatgpt.com/share/6a7eaed6-5a28-83ee-ad55-d372f675f5e3
+
+
+prompt to understand the project from zip file
+https://chatgpt.com/share/6a82ad7e-4748-83e9-810c-b2ad2b081a2e
