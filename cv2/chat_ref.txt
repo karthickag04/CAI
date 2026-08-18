@@ -1,0 +1,2 @@
+use case of CV2 by installing opencv-python
+https://chatgpt.com/share/6a83f876-eff0-83ee-b94d-91b1d3b42fc7
