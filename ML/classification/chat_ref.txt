@@ -1,2 +1,6 @@
 chat ref for building DT using GINI
 https://chatgpt.com/share/6a44ece1-e140-83ee-94da-e647ac202ff9
+
+
+KNN Mathematical workflow
+https://chatgpt.com/share/6a911de3-6814-83ee-af62-da3169518eee
