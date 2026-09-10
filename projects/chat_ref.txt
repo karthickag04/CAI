@@ -7,3 +7,7 @@ https://chatgpt.com/share/6a82ad7e-4748-83e9-810c-b2ad2b081a2e
 
 prompt for new project creation with streamlit and transformers
 https://chatgpt.com/share/6a843b76-e3ec-83ee-bb1f-f4d89d6405f8
+
+
+chat ref for YOLO implementation
+https://chatgpt.com/share/6aa28526-df0c-83e8-a1da-832d12c534ab
